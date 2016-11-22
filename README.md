@@ -1,0 +1,2 @@
+# memo
+something about Android
