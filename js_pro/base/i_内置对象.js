@@ -1,0 +1,5 @@
+/* 
+Math、Date 、Array、String
+
+
+*/

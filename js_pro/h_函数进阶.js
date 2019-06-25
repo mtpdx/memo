@@ -130,7 +130,7 @@ var max = Math.max.apply(Math, arr);
 var min = Math.min.apply(Math, arr);
 console.log(max, min);
 
-// 3. bind()  绑定 捆绑的意思
+// 3. bind() 
 var o = {
     name: 'andy'
 };
