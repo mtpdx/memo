@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div:first-child {
+            color: red
+        }
+
+        div:last-child {
+            color: green
+        }
+
+        div:nth-child(3) {
+            color: blue
+        }
+
+        div:nth-last-child(3) {
+            /* 倒数第3个 */
+            color: pink;
+        }
+
+        div:nth-child(3n) {
+            /* 
+            2n      偶数 / even
+            2n+1    奇数 / odd
+            3n      三的倍数
+            n+3     第三个开始,包含第三个
+            -n+3    前三个,包含第三个
+             */
+
+            /* 3的倍数 */
+            color: yellow
+        }
+
+        article :nth-child(1) {
+            color: rebeccapurple
+        }
+
+        /* 无效 */
+        /* article section:nth-child(1){
+            color: red
+        }  */
+
+
+        article section:first-of-type {
+            color: blue
+        }
+
+        article section:nth-of-type(3) {
+            color: yellow
+        }
+    </style>
+</head>
+
+<body>
+    <div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+    <div>hello</div>
+
+    <article>
+        <p>ppppppppppppppppp</p>
+        <section class="section1">section</section>
+        <section class="section2">section</section>
+        <section class="section3">section</section>
+        <section class="section4">section</section>
+        <section class="section5">section</section>
+    </article>
+</body>
+
+</html>

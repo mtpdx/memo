@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button{
+            cursor: pointer
+        }
+        button[disabled]{
+            cursor: default;
+        }
+        input[value="search"]{
+            color: aqua
+        }
+        input[type="text"]{
+            color: pink
+        }
+
+        div[class^="icon"]{
+            color: yellow
+        }
+
+        div[class$="icon"]{
+            color: blue
+        }
+
+        div[class*="iconn"]{
+            color:rebeccapurple
+        }
+
+
+    </style>
+</head>
+<body>
+    <button>submit</button>
+    <button>submit</button>
+    <button disabled>submit</button>
+    <button>submit</button>
+
+    <input type="text" value="text">
+    <input type="text" value="text">
+    <input type="text" value="text">
+    <input type="search" value="search">
+    <input type="search" value="search">
+    <input type="search" value="search">
+    
+    <div class="icon1">qq</div>
+    <div class="icon2">qq</div>
+    <div class="icon3">qq</div>
+
+    <div class="1icon">qq</div>
+    <div class="2icon">qq</div>
+    <div class="3icon">qq</div>
+
+    <div class="1iconn1">qq</div>
+    <div class="2iconn2">qq</div>
+    <div class="3iconn3">qq</div>
+</body>
+</html>

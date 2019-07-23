@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        - `before` 和 `after` 必须有 `content` 属性
+        - `before` 在内容前面，after 在内容后面
+        - `before` 和 `after` 创建的是一个元素，但是属于行内元素
+        - 创建出来的元素在 `Dom` 中查找不到，所以称为伪元素
+        - 伪元素和标签选择器一样，权重为 1
+     -->
+    <style>
+        header {
+            width: 200px;
+            height: 200px;
+            border: 1px solid lightcoral;
+        }
+
+        header::after,
+        header::before {
+            width: 50px;
+            height: 100px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        header::before {
+            content: "hello";
+            background-color: red
+        }
+
+        header::after {
+            content: "world";
+            background-color: yellow
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        TTMF
+    </header>
+</body>
+
+</html>
