@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 700px;
+        }
+
+        img[class^="rotate"] {
+            margin: 10px;
+            display: inline-block;
+            transition: all 1s;
+        }
+
+        .rotatex:hover {
+            transform: rotatex(45deg)
+        }
+
+        .rotatey:hover {
+            transform: rotatey(90deg)
+        }
+
+        .rotatez:hover {
+            transform: rotatez(45deg)
+        }
+
+        .rotate3d:hover {
+            transform: rotate3d(1, 1, 0, 45deg)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img src="media/pig.jpg" alt="" class="rotatex"></img>
+        <img src="media/pig.jpg" alt="" class="rotatey"></img>
+        <img src="media/pig.jpg" alt="" class="rotatez"></img>
+        <img src="media/pig.jpg" alt="" class="rotate3d"></img>
+    </div>
+</body>
+
+</html>

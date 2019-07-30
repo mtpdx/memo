@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(500px, 0) rotate(180deg) scale(0.5);
+            }
+
+            50% {
+                transform: translate(500px, 500px) rotate(360deg) scale(1);
+            }
+
+            75% {
+                transform: translate(0, 500px) rotate(180deg) scale(0.5);
+            }
+
+            /* 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            } */
+        }
+
+        div.animation {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+
+            /* animation-name: move;
+            animation-duration: 8s;
+            animation-direction: alternate;
+            animation-delay: 2s;
+            animation-iteration-count: infinite;
+            /* 速度曲线 */
+            /* animation-timing-function: ease-in-out;  
+            animation-fill-mode: forwards; */
+
+            /* animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 起始与结束状态 */
+            animation: move 8s linear 2s 2 alternate forwards;
+        }
+
+        div.animation:hover {
+            animation-play-state: paused;
+        }
+
+        .map {
+            top: 0;
+            right: 0;
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background-color: #071524;
+        }
+
+        .city1 {
+            position: absolute;
+            top: 300px;
+            left: 100px;
+        }
+
+        .city2 {
+            position: absolute;
+            top: 150px;
+            left: 450px;
+        }
+
+        .city3 {
+            position: absolute;
+            top: 450px;
+            left: 450px;
+        }
+
+        .dotted {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #f7f2f2;
+        }
+
+        div[class^="pluse"] {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 12px #f2f2f2;
+            border-radius: 50%;
+            animation-name: pluse;
+            animation-duration: 1s;
+            animation-delay: 1.2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        div.pluse1 {
+            animation-delay: 0.4s;
+        }
+
+        div.pluse2 {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes pluse {
+            0% {}
+
+            70% {
+                width: 40px;
+                height: 40px;
+                opacity: 1;
+            }
+
+            100% {
+                width: 70px;
+                height: 70px;
+                opacity: 0;
+            }
+        }
+
+        .progress {
+            margin-top: 15px;
+            width: 0;
+            height: 10px;
+            border-radius: 5px;
+            background-color: pink;
+            animation: progress 10s linear 1s infinite alternate forwards;
+        }
+
+        @keyframes progress {
+            0% {}
+
+            100% {
+                width: 200px;
+            }
+        }
+
+        .input {
+            margin: 10px;
+            border: 1px solid #fd6363;
+            width: 0;
+            height: 30px;
+            color: #fd6363;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 20px;
+            line-height: 30px;
+            animation: inputt 3s steps(7) forwards;
+        }
+
+        @keyframes inputt {
+            0% {}
+
+            100% {
+                width: 140px;
+            }
+        }
+
+        .bg-black{
+            width: 800px;
+            height: 336px;
+            position: relative;
+            /* background-color: #cccccc; */
+            background: url(media/bg1.png);
+            animation: bg-move 12s linear infinite;
+        }
+
+        .bear{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 100px;
+            background: url(media/bear.png) no-repeat;
+            animation: bear 1s steps(8) infinite, bear-move 3s linear forwards;
+        }
+
+        @keyframes bear{
+            0%{
+                background-position: 0 0;
+
+            }
+
+            100%{
+                background-position: -1600px 0;
+            }
+        }
+
+        @keyframes bear-move{
+            0%{
+                left: 0;
+            }
+
+            100%{
+                left: 50%;
+                /* transform: translateX(-50%); */
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes bg-move{
+            0%{
+                background-position: 0 0;
+            }
+
+            100%{
+                background-position: -3840px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="animation"></div>
+
+    <div class="map">
+        <div class="city1">
+            <!-- 水波效果 -->
+            <div class="dotted"></div>
+            <div class="pluse1"></div>
+            <div class="pluse2"></div>
+            <div class="pluse3"></div>
+        </div>
+        <div class="city2">
+            <div class="dotted"></div>
+            <div class="pluse1"></div>
+            <div class="pluse2"></div>
+            <div class="pluse3"></div>
+        </div>
+        <div class="city3">
+            <div class="dotted"></div>
+            <div class="pluse1"></div>
+            <div class="pluse2"></div>
+            <div class="pluse3"></div>
+        </div>
+        
+    </div>
+
+    <div class="progress"></div>
+
+    <div class="input">你懂我的意思吧</div>
+
+    <div class="bg-black">
+        <!-- bear run -->
+            <dic class="bear"></dic>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .rotate{
+            background-color: aquamarine;
+            width: 100px;
+            height: 100px;
+            /* transform: rotate(-45deg); */
+            border-top-left-radius: 50%;
+            border: 5px solid pink;
+            transition: all 1s;
+        }
+        .rotate:hover{
+            transform: rotate(270deg);
+        }
+
+        .search{
+            position: relative;
+            width: 250px;
+            height: 35px;
+            border: 1px solid black;
+        }
+
+        .search::after{
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 9px;
+            right: 9px;
+            border-right: 1px solid red;
+            border-bottom: 1px solid red;
+            transform: rotate(45deg);
+            transition: all 0.3s;
+        }
+        .search:hover::after{
+            transform: rotate(225deg)
+        }
+
+        .transform-origin{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin: auto;
+            /* top`、`bottom`、`left`、`right`、`center` */
+            /* transform-origin: left bottom; */
+            transform-origin: center center; /* 50% 50%*/
+            transition: all 0.1s;
+
+        }
+        .transform-origin:hover{
+            transform: rotate(315deg)
+        }
+    </style>
+</head>
+<body>
+    <div class="rotate"></div>
+
+    <div class="search triangle"></div>
+
+    <div class="transform-origin"></div>
+</body>
+</html>

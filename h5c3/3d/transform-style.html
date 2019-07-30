@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 500px;
+
+        }
+
+        .parent {
+            position: relative;
+            width: 200px;
+            height: 200px;  
+            margin: 50px auto;
+            transform-style: preserve-3d;
+            transition: all 2s;
+        }
+
+        .parent:hover {
+            transform: rotateY(135deg);
+        }
+
+        .parent div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fd6363;
+        }
+
+        .parent div:last-child{
+            background-color: aqua;
+            /* transform: rotateX(60deg); */
+            transition: all 1s;
+        }
+
+        .parent div:last-child:hover{
+            /* background-color: aqua; */
+            transform: rotateX(130deg);
+        }
+
+        .box {
+            margin: 10px auto;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transition: all 1s;
+            transform-style: preserve-3d;
+        }
+
+        .box:hover{
+            transform: rotateY(180deg);
+        }
+
+        .box div{
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            line-height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .box div:first-child{
+            background-color: #fd6363;
+            transform: rotateY(180deg);
+        }
+
+        .box div:last-child{
+            background-color: #23c438;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child1"></div>
+        <div class="child2"></div>
+    </div>
+
+    <div class="box">
+        <div>hello</div>
+        <div>world</div>
+    </div>
+</body>
+
+</html>
