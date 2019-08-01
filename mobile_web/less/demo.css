@@ -1,0 +1,33 @@
+html {
+  font-size: 50px;
+}
+body {
+  background-color: #fd6363;
+  font-size: 14px;
+}
+body .header {
+  width: 100px;
+  height: 100px;
+}
+body .header a {
+  color: #fff;
+}
+body .header a:hover {
+  color: aqua;
+}
+body .nav .log {
+  color: green;
+}
+body .nav::before {
+  content: "hello";
+}
+body .add {
+  width: 11rem;
+  height: 10rem;
+  border: 10px solid black;
+}
+body .divide {
+  width: 1.6rem;
+  height: 1.8rem;
+  color: #dddddd;
+}

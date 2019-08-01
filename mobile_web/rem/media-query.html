@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- <link rel="stylesheet" href="style320.css" media="screen and (min-width: 320px)">
+    <link rel="stylesheet" href="style640.css" media="screen and (min-width: 640px)"> -->
+
+    <title>Document</title>
+    <style>
+
+        @media screen and (max-width: 400px){
+            body{
+                /* background-color:red;  */
+                background: -webkit-linear-gradient(left, red, green);
+            }
+            html {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (max-width: 800px) and (min-width: 401px){
+            body{
+                /* background-color:blue;  */
+                background: -webkit-linear-gradient(left, green, blue)
+            }
+            html{
+                font-size: 30px;
+            }
+        }
+
+        @media screen and (min-width: 801px){
+            body{
+                /* background-color:green;  */
+                background: -webkit-linear-gradient(left, blue, red)
+            }
+            html{
+                font-size: 60px;
+            }
+        }
+
+        .top{
+            width: 10rem;
+            height: 2rem;
+            background-color: #fd6363;
+            text-align: center;
+            line-height: 2rem;
+            margin: 0 auto;
+            color: #FFF;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="top">Media+rem</div>
+</body>
+</html>

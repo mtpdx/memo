@@ -1,0 +1,50 @@
+@main-color: #fd6363;
+
+@main-font-size:14px;
+
+@border: 5px + 5;
+
+@base-font:50px;
+
+html{
+    font-size: @base-font;
+}
+
+body{
+    background-color: @main-color;
+    font-size: @main-font-size;
+
+    .header{
+        width: 100px;
+        height: 100px;
+
+        a {
+            color: #fff;
+
+            &:hover{
+                color: aqua;
+            }
+        }
+    }
+
+    .nav {
+        .log{
+            color: green;
+        }
+        &::before{
+            content: "hello";
+        }
+    }
+
+    .add{
+        width: 10rem + 1;
+        height: 10rem;
+        border: @border solid black;
+    }
+
+    .divide{
+        width: 80rem / @base-font;
+        height: 90rem / @base-font;
+        color: #fff - #222;
+    }
+}

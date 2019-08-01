@@ -1,0 +1,103 @@
+@import "common";
+
+body{
+    min-width: 320px;
+    width: 15rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Arial,Helvetica;
+    background: #F2F2F2;
+}
+
+@base-font: 50;
+
+.search-content{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15rem;
+    height: 88rem / @base-font;
+    background-color: #ffc001;
+
+    .classify{
+        width: 44rem / @base-font;
+        height: 70rem / @base-font;
+        margin: 11rem / @base-font 25rem / @base-font 7rem / @base-font 24rem / @base-font;
+        background: url(../images/classify.png) no-repeat;
+        background-size: 44rem / @base-font 70rem / @base-font;
+    }
+
+    .search{
+        flex: 1;
+        input{
+            outline: none;
+            width: 100%;
+            border: 0;
+            height: 66rem / @base-font;
+            border-radius: 33rem / @base-font;
+            background-color: #fff2cc;
+            margin-top: 12rem / @base-font;
+            font-size: 25rem / @base-font;
+            padding-left: 55rem / @base-font;
+            color: #757575;
+        }
+    }
+
+    .login {
+        width: 75rem / @base-font;
+        height: 70rem / @base-font;
+        line-height: 70rem / @base-font;
+        margin: 10rem / @base-font;
+        font-size: 25rem / @base-font;
+        text-align: center;
+        color: #fff;
+    }
+}
+
+.banner {
+    width: 750rem / @base-font;
+    height: 368rem / @base-font;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.ad {
+    display: flex;
+    a {
+        flex: 1;
+        img{
+            width: 100%;
+        }
+    }
+}
+
+nav {
+    width: 750rem / @base-font;
+    display: flex;
+    flex-wrap: wrap;
+    a {
+        width: 150rem / @base-font;
+        height: 140rem / @base-font;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: 82rem / @base-font;
+            height: 82rem / @base-font;
+            margin-top: 10rem / @base-font;
+        }
+
+        span{
+            font-size: 20rem / @base-font;
+            color: #333;
+            line-height: 48rem / @base-font;
+        }
+    }
+}
+
+
+
