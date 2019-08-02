@@ -9,7 +9,7 @@ var fun = function() {};
 
 
 // 3. 利用 new Function('参数1','参数2', '函数体');
-
+//Function里面参数都必须是字符串形式;
 var f = new Function('a', 'b', 'console.log(a + b)');
 f(1, 2);
 // 4. 所有函数都是 Function 的实例(对象)

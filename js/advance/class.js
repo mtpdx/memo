@@ -12,7 +12,7 @@
 }
 
 // 2. 利用类创建对象 new
-var ldh = new Star('刘德华', 18);
+var ldh = new Star('刘德华', 18);  // Star {uname: "刘德华", age: 18} 
 var zxy = new Star('张学友', 20);
 console.log(ldh);
 console.log(zxy);

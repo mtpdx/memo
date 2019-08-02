@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 通过ID来获取元素
+            var name = document.getElementById("name");
+            console.log(name);
+
+            // 通过标签名来获取元素
+            var p = document.getElementsByTagName("p");
+            console.log(p);
+
+            // 通过class来获取元素
+            var ages = document.getElementsByClassName("age");
+            console.log(ages);
+
+            // 通过选择器来获取元素
+            var liHello = document.querySelectorAll("ul li");
+            console.log(liHello);
+
+            // 获取body和html元素
+            var body = document.body
+            console.log(body);
+
+            var html = document.documentElement
+            console.log(html);
+
+            // 给元素注册事件
+            document.querySelector(".btn").onclick = function(){
+                console.log("btn click");
+                this.style.backgroundColor = '#fd6363';
+                this.style.color = '#fff';
+                // p.style.color = "#fd6363";
+                for (let index = 0; index < p.length; index++) {
+                    const element = p[index];
+                    element.style.color = '#fd6363';
+                }
+
+                document.querySelector("ul").style.listStyle = 'none';
+
+                for (let index = 0; index < liHello.length; index++) {
+                    const element = liHello[index];
+                    element.style.fontSize = '30px';
+                }
+            };
+            // 修改元素的内容
+            name.innerText = "Rengar<strong>18啊</strong>";
+            for (let index = 0; index < ages.length; index++) {
+                const age = ages[index];
+                age.innerHTML = "Rengar<strong>18啊</strong>" + index;
+            }
+            // 区分innerText和innerHTML的区别
+            // 修改像div这类普通元素的属性
+            // 修改表单元素的属性
+            // 修改元素的样式属性 
+        };
+    </script>
+</head>
+
+<body>
+    <button class="btn">button</button>
+    <p>tonight, we hunter</p>
+    <p>your dream, my hand</p>
+    <div id="name"></div>
+    <div class="age"></div>
+    <div class="age"></div>
+    <ul>
+        <li>hello1</li>
+        <li>hello2</li>
+        <li>hello3</li>
+    </ul>
+</body>
+
+</html>

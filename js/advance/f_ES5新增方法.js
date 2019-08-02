@@ -1,10 +1,10 @@
 /* 
-forEach
-filter
-some
-trim
-Object.keys();
-Object.defineProperty();
+forEach 遍历数组, forEach里return不会终止迭代
+filter 过滤数组
+some 查找数组中是否有满足条件的元素
+trim 去除字符串两端空格
+Object.keys(); 获取当前对象属性名,返回值是一个数组;
+Object.defineProperty();  设置或修改对象中的属性;
 */
 
 /* 

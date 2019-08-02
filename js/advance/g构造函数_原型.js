@@ -128,8 +128,10 @@ function Son(uname, age, score) {
     Father.call(this, uname, age);
     this.score = score;
 }
+
+// 借用原型对象继承方法
 // Son.prototype = Father.prototype;  这样直接赋值会有问题,如果修改了子原型对象,父原型对象也会跟着一起变化
-Son.prototype = new Father();
+Son.prototype = new Father();  // new Father().__proto__指向Father.prototype
 // 如果利用对象的形式修改了原型对象,别忘了利用constructor 指回原来的构造函数
 Son.prototype.constructor = Son;
 // 这个是子构造函数专门的方法
