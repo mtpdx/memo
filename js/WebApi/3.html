@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="alert('hello')"></button>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        window.onload = function () {
+            /* 
+            注册事件:
+                传统方式:
+                    利用on开头的事件: <button onclick="alert('hello')"></button> 或者  btn.onclick = function(){};
+                    注册事件的唯一性:同一元素同一事件只能设置一个处理函数;
+                监听注册方式:
+                    addEventListener('type', listener[, useCapture])   // ie9兼容问题 可使用attachEvent()代替
+                    attachEvent(eventNameWithOn, callback);
+    
+             */
+
+            var btn = document.querySelector('button');
+            btn.addEventListener('click', function () {
+                alert('a')
+            });
+            btn.addEventListener('click', function () {
+                alert('b')
+            });
+
+            btn.attachEvent('onclick', function () {
+                alert('attach event');
+            });
+
+
+            /* 
+            删除(解绑)事件:
+               传统方式:
+                   eventTarget.onclick = null;
+               监听注册方式:
+                   eventTarget.removeEventListener(type, listener[,useCapture])
+                   eventTarget.detachEvent(eventNameWithOn, callback)
+   
+             */
+
+            var divs = document.querySelectorAll('div');
+            divs[0].onclick = function () {
+                alert(11);
+                // 1. 传统方式删除事件
+                divs[0].onclick = null;
+            }
+            // 2. removeEventListener 删除事件
+            divs[1].addEventListener('click', fn) // 里面的fn 不需要调用加小括号
+            function fn() {
+                alert(22);
+                divs[1].removeEventListener('click', fn);
+            }
+            // 3. detachEvent
+            divs[2].attachEvent('onclick', fn1);
+
+            function fn1() {
+                alert(33);
+                divs[2].detachEvent('onclick', fn1);
+            }
+
+
+            //删除事件兼容性解决方案:
+            function removeEventListener(element, evnetName, fn){
+                if (element.removeEventListener){
+                    element.removeEventListener(evnetName, fn);
+                }else if (element.detachEvent){
+                    element.detachEvent('on' + evnetName, fn);
+                }else{
+                    element['on' + evnetName] = null;
+                }
+            };
+        };
+    </script>
+</body>
+
+</html>

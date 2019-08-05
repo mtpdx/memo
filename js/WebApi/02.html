@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+    window.onload = function(){
+        /* 
+        获取属性:
+            element.属性    (内置属性)
+            element.getAttribute('属性);   (自定义属性+内置属性)
+
+        设置属性:
+            element.属性 = '值'
+            element.setAttribute('属性', '值');
+
+        移除属性:
+            element.removeAttribute('属性')
+         */
+
+
+         /* 
+        Node: nodeType, nodeName, nodeValue
+
+        元素节点 nodeType = 1; 属性节点 nodeType = 2; 文本节点 nodeType = 3;
+
+        node.parent.Node
+
+        parentNode.childNodes    // 标准
+            (返回值包含所有类型的节点,如果只需要元素节点, 需要单独处理,所以一般不用childNode)
+
+        parentNode.chlidren     // 非标准 ,  只读属性
+            parentNode.children.length
+
+        parentNode.firstChild
+        parentNode.lastChild
+        parentNode.firstElementChild    //ie9兼容问题
+        parentNode.lastElementChild     //ie9兼容问题
+
+        node.nextSibling
+        node.previousSibling            
+        node.nextElementSibling         //ie9兼容问题
+        node.previousElementSibling     //ie9兼容问题
+
+
+        document.createElement('tagName')
+
+        node.appendChild(child)
+
+        node.insertBefore(child, 指定元素)
+
+        node.removeChild(child);
+
+        node.cloneNode();
+            参数为空或者false,浅拷贝,只复制节点本身;
+            参数为true,深拷贝;
+
+        创建元素三种方式:
+            document.write()            //  如果页面文档流加载完毕，再调用这句话会导致页面重绘  
+            element.innerHTML           //  创建多个元素效率更高,结构稍显复杂
+            document.createElement()    //  创建多个元素效率一般,结构清晰
+
+          */
+    };
+    
+    </script>
+</body>
+</html>

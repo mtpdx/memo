@@ -32,6 +32,9 @@
             console.log(html);
 
             // 给元素注册事件
+            /* 
+
+             */
             document.querySelector(".btn").onclick = function(){
                 console.log("btn click");
                 this.style.backgroundColor = '#fd6363';
@@ -55,7 +58,13 @@
                 const age = ages[index];
                 age.innerHTML = "Rengar<strong>18啊</strong>" + index;
             }
-            // 区分innerText和innerHTML的区别
+            /*
+            innerText和innerHTML的区别
+            - 获取内容时的区别：
+            ​	innerText会去除空格和换行，而innerHTML会保留空格和换行	
+            - 设置内容时的区别：
+            ​	innerText不会识别html，而innerHTML会识别
+             */
             // 修改像div这类普通元素的属性
             // 修改表单元素的属性
             // 修改元素的样式属性 
