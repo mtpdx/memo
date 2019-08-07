@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>事件委托</h3>
+    <ul>
+        <li>riven 1</li>
+        <li>riven 2</li>
+        <li>riven 3</li>
+        <li>riven 4</li>
+        <li>riven 5</li>
+    </ul>
+
+    <div>禁用右键菜单,禁用鼠标选中文字</div>
+
+
+    <script>
+        // 事件委托
+        var ul = document.querySelector("ul");
+        ul.addEventListener('click', function (event) {
+            event.target.style.backgroundColor = '#fd6363';
+            alert(event.target.innerText);
+        });
+
+        // 鼠标事件 contextmenu , selectstart
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+
+        // 鼠标事件对象 MouseEvent
+        document.addEventListener('click', function (e) {
+            // 1. client 鼠标在可视区的x和y坐标
+            console.log(e.clientX);
+            console.log(e.clientY);
+            console.log('---------------------');
+
+            // 2. page 鼠标在页面文档的x和y坐标
+            console.log(e.pageX);
+            console.log(e.pageY);
+            console.log('---------------------');
+
+            // 3. screen 鼠标在电脑屏幕的x和y坐标
+            console.log(e.screenX);
+            console.log(e.screenY);
+
+        });
+
+
+        // 常用的键盘事件
+        //1. keyup 按键弹起的时候触发 
+        // document.onkeyup = function () {
+        //     console.log('我弹起了');
+
+        // }
+        document.addEventListener('keyup', function () {
+            console.log('我弹起了');
+        })
+
+        //3. keypress 按键按下的时候触发  不能识别功能键 比如 ctrl shift 左右箭头啊
+        document.addEventListener('keypress', function () {
+            console.log('我按下了press');
+        })
+        //2. keydown 按键按下的时候触发  能识别功能键 比如 ctrl shift 左右箭头啊
+        document.addEventListener('keydown', function () {
+            console.log('我按下了down');
+        })
+        // 4. 三个事件的执行顺序  keydown -- keypress -- keyup
+
+
+        // 键盘事件对象中的keyCode属性可以得到相应键的ASCII码值
+        // 1. 我们的keyup 和keydown事件不区分字母大小写  a 和 A 得到的都是65
+        // 2. 我们的keypress 事件 区分字母大小写  a  97 和 A 得到的是65
+        document.addEventListener('keyup', function (e) {
+            // console.log(e);
+            console.log('up:' + e.keyCode);
+            // 我们可以利用keycode返回的ASCII码值来判断用户按下了那个键
+            if (e.keyCode === 65) {
+                alert('您按下的a键');
+            } else {
+                alert('您没有按下a键')
+            }
+
+        })
+        document.addEventListener('keypress', function (e) {
+            // console.log(e);
+            console.log('press:' + e.keyCode);
+
+        })
+    </script>
+</body>
+
+</html>

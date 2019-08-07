@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            //只能写一次
+        };
+
+        window.addEventListener('load', function () {
+            //可以写多次
+        });
+
+        window.addEventListener('DOMontentLoaded', function () {
+            // DOM加载完成
+        });
+
+        // window.onresize = function(){};
+
+        window.addEventListener('resize', function () {
+            // 调整窗口大小
+
+            console.log(window.innerWidth);
+        });
+
+        var i_timer = window.setInterval(function () { }, 1000);
+
+        var t_timer = window.setTimeout(function () { }, 1000);
+
+        clearInterval(i_timer);
+        clearTimeout(t_timer);
+
+
+        // location
+        /* 
+        URL uniform resource locator
+
+        protocol://host[:port]/path/[?query]#fragment
+
+        location.href
+        location.host
+        location.port
+        location.pathname
+        location.search
+        location.hash       // fragment
+
+
+        location.assign()   // 与href一样,重定向
+        location.replace()  // 不能后退
+        location.reload()   // refresh
+         */
+
+
+
+        // navigator
+        // 终端判断
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            window.location.href = "";     //手机
+        } else {
+            window.location.href = "";     //电脑
+        }
+
+
+        // history
+        /* 
+        back()
+        forward()
+        go(param)       // go(1)  go(-1)
+         */
+
+    </script>
+</body>
+
+</html>
