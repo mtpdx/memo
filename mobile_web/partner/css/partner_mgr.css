@@ -1,0 +1,330 @@
+body {
+    min-width: 320px;
+    max-width: 750px;
+    width: 10rem;
+    margin: 0 auto;
+    font-family: Arial, Helvetica;
+    background: #f5f5f5;
+}
+
+@media screen and (min-width: 750px){
+    html{
+        font-size: 75px!important;
+    }
+}
+
+header{
+    width: 100%;
+    height: 1.173333rem;
+    text-align: center;
+    line-height: 1.173333rem;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: .48rem;
+    
+}
+
+.total-yield{
+    position: relative;
+    width: 100%;
+    height: 1.28rem;
+    /* padding-left: .266667rem; */
+    line-height: 1.28rem;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: .4rem;
+    margin-top: .266667rem;
+}
+
+.total-yield::before{
+    content: "";
+    position: absolute;
+    left: .266667rem;
+    bottom: 0;
+    width: 9.733333rem;
+    height: .013333rem;
+    background-color: #eaeaea;
+}
+
+.total-yield::after{
+    content: "";
+    position: absolute;
+    top: .48rem;
+    right: .266667rem;
+    width: .266667rem;
+    height: .266667rem;
+    border-top: .026667rem solid #eaeaea;
+    border-right: .026667rem solid #eaeaea;
+    transform: rotate(45deg);
+
+}
+
+.total-yield span:first-child {
+    margin-left: .266667rem;
+}
+
+.total-yield span:last-child {
+    color: #da2f25;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 1.92rem;
+    background-color: #ffffff;
+}
+
+nav .bar{
+    display: flex;
+    border-radius: .426667rem;
+    /* border: .013333rem solid #da2f25; */
+    width: 9.466667rem;
+    height: .853333rem;
+    margin: auto;
+}
+
+nav .bar .nav-item{
+    flex: 1;
+    width: 9.466667rem;
+    height: .853333rem;
+    font-size: .373333rem;
+    color: #da2f25;
+    text-align: center;
+    line-height: .853333rem;
+    border-top: .013333rem solid #da2f25;
+    border-bottom: .013333rem solid #da2f25;
+}
+
+nav .bar .nav-checked{
+    background-color: #da2f25;
+    color: #ffffff;
+}
+
+nav .bar .nav-item:first-child{
+    border-top-left-radius: .426667rem;
+    border-bottom-left-radius: .426667rem;
+    border-left: .013333rem solid #da2f25;
+}
+
+nav .bar .nav-item:last-child{
+    border-top-right-radius: .426667rem;
+    border-bottom-right-radius: .426667rem;
+    border-right: .013333rem solid #da2f25;
+}
+
+nav .bar .nav-item:nth-child(-n+4){
+    border-right: 1px solid #da2f25;
+}
+
+.yield-cate{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 3.146667rem;
+    background-color: #ffffff;
+}
+
+.yield-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 50%;
+    height: 1.573333rem;
+}
+
+.yield-item:nth-child(2n)::before{
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: .853333rem;
+    background-color: #eaeaea;
+    top: .36rem;
+    left: 0;
+}
+
+.yield-item span {
+    flex: 1;
+    padding-left: .533333rem;
+}
+
+.yield-item span:nth-child(1){
+    color: #999999;
+    font-size: .373333rem;
+    padding-top: .266667rem;
+}
+
+.yield-item span:nth-child(2){
+    color: #333333;
+    font-size: .4rem;
+    padding-bottom: .266667rem;
+}
+
+.team-count {
+    margin-top: .266667rem;
+    width: 100%;
+    background-color: #ffffff;
+    
+}
+
+.team-count .title{
+    position: relative;
+    height: 1.28rem;
+    line-height: 1.28rem;
+    margin-left: .266667rem;
+    color: #333333;
+    font-size: .4rem;
+}
+
+.team-count .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 9.733333rem;
+    height: .013333rem;
+    background-color: #eaeaea;
+}
+
+.team-count .title::after{
+    content: "";
+    position: absolute;
+    top: .48rem;
+    right: .266667rem;
+    width: .266667rem;
+    height: .266667rem;
+    border-top: .026667rem solid #eaeaea;
+    border-right: .026667rem solid #eaeaea;
+    transform: rotate(45deg);
+
+}
+
+.team-count .detail {
+    display: flex;
+    width: 100%;
+    height: 1.84rem;
+    background-color: #ffffff;
+    
+}
+
+.team-count .detail .team-count-item{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-count .detail .team-count-item span{
+    flex: 1;
+}
+
+.team-count .detail .team-count-item span:first-child{
+    color: #999999;
+    font-size: .373333rem;
+    padding-top: .533333rem;
+}
+
+.team-count .detail .team-count-item span:last-child{
+    color: #333333;
+    font-size: .4rem;
+    padding-bottom: 20px;
+}
+
+.quit-team {
+    margin-top: .266667rem;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.quit-team .title{
+    position: relative;
+    height: 1.28rem;
+    line-height: 1.28rem;
+    margin-left: .266667rem;
+    color: #333333;
+    font-size: .4rem;
+}
+
+.quit-team .title::after{
+    content: "";
+    position: absolute;
+    top: .48rem;
+    right: .266667rem;
+    width: .266667rem;
+    height: .266667rem;
+    border-top: .026667rem solid #eaeaea;
+    border-right: .026667rem solid #eaeaea;
+    transform: rotate(45deg);
+
+}
+
+.quit-team-item{
+    position: relative;
+    width: 100%;
+    height: 2.32rem;
+    background-color:#ffffff; 
+}
+
+.quit-team-item::before{
+    content: "";
+    position: absolute;
+    left: .266667rem;
+    top: 0;
+    width: 9.733333rem;
+    height: .013333rem;
+    background-color: #eaeaea;
+}
+
+.quit-team-item .img{
+    position: absolute;
+    left: .266667rem;
+    top: .266667rem;
+    width: .853333rem;
+    height: .853333rem;
+    background-color: #da2f25;
+}
+
+.quit-team-item .nick{
+    position: absolute;
+    left: 1.333333rem;
+    top: .266667rem;
+    color: #333333;
+    font-size: .346667rem;
+}
+
+
+.quit-team-item .phone{
+    position: absolute;
+    left: 1.333333rem;
+    top: .72rem;
+    color: #999999;
+    font-size: .32rem;
+}
+
+.quit-team-item .join-time{
+    position: absolute;
+    right: .266667rem;
+    top: .72rem;
+    color: #999999;
+    font-size: .32rem;
+}
+.quit-team-item .req-time{
+    position: absolute;
+    left: 1.333333rem;
+    bottom: .266667rem;
+    color: #333333;
+    font-size: .32rem;
+}
+.quit-team-item .view{
+    position: absolute;
+    bottom: .2rem;
+    right: .266667rem;
+    width: 1.173333rem;
+    height: .533333rem;
+    color: #ffffff;
+    font-size: .293333rem;
+    background-color: #da2f25;
+    border-radius: .266667rem;
+    text-align: center;
+    line-height: .533333rem;
+}
+
