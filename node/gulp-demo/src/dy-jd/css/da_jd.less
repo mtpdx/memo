@@ -1,0 +1,214 @@
+@import "common";
+
+body{
+    min-width: 320px;
+    width: 15rem;
+    margin: 0 auto;
+    // line-height: 1.5;
+    font-family: Arial,Helvetica;
+    // background-color: #F5F5F5;
+}
+
+@base-font: 50;
+
+#top{
+    position: fixed;
+    z-index: 5;
+    top: 0;
+}
+
+#top .search-content{
+    display: flex;
+    margin: 0 auto;
+    width: 15rem;
+    height: 88rem / @base-font;
+    background-color: #ffffff;
+
+    .search-back{
+        width: 20rem / @base-font;
+        height: 40rem / @base-font;
+        margin: 27rem / @base-font 20rem / @base-font 27rem / @base-font 36rem / @base-font;
+        background-color: #757575;
+    }
+
+    .search{
+        flex: 1;
+        input{
+            outline: none;
+            width: 100%;
+            border: 0;
+            height: 64rem / @base-font;
+            border-radius: 32rem / @base-font;
+            background-color: #f5f5f5;
+            margin-top: 12rem / @base-font;
+            font-size: 28rem / @base-font;
+            padding-left: 68rem / @base-font;
+            color: #999999;
+        }
+    }
+}
+
+#nav {
+    width: 15rem;
+    height: 100rem / @base-font;
+    position: relative;
+    background-color: #ffffff;
+    border-bottom:1px solid #f5f5f5;
+    .swiper-slide{
+        width: 150rem / @base-font;
+        text-align: center;  
+        line-height: 80rem / @base-font;     
+        span{
+            font-size: 32rem / @base-font;
+            color: #333333; 
+        }
+    }  
+
+    .bar{
+        position: absolute;
+        width: 60rem / @base-font;
+        height: 28rem / @base-font;
+        bottom: 0;
+
+        .color{
+            width: 60rem / @base-font;
+            height: 6rem / @base-font;
+            margin: 0 auto;
+            background-color: #da2f25;
+            border-radius: 3rem / @base-font;
+        }
+    }
+}
+
+ul{
+      list-style: none;              
+}
+
+#page {
+    margin-top: 100rem / @base-font;
+    width: 15rem;
+    height: 100%;
+
+    .slidepage{
+        height: 100%;
+        .scroll{
+            height: 100%;
+            .slidescroll{
+                height: auto;
+                .banner{
+                    background-color: #F5F5F5;
+                    img{
+                        border-radius: 16rem / @base-font;
+                        width: 710rem / @base-font;
+                        margin: 0 auto;
+                        height: 280rem / @base-font;
+                        display: block;
+                    }
+            
+                    // .swiper-pagination{
+            
+                    // }
+                }
+
+                .sub-nav{
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    height: 108rem / @base-font;
+
+                    .sub-nav-item{
+                        flex: 1;
+                        font-size: 28rem / @base-font;
+                        color: #666666;
+                        text-align: center;
+                    }
+
+                    
+                }
+
+                .ware-list{
+                    li{
+                        .ware-item{
+                            position: relative;
+                            width: 100%;
+                            height: 280rem / @base-font;
+                            .ware-pic{
+                                width: 240rem / @base-font;
+                                height: 240rem / @base-font;
+                                left: 20rem / @base-font;
+                                top: 20rem / @base-font;
+                                border: 1px solid #da2f25;
+                            }
+
+                            .ware-title{
+                                padding: 0;
+                                position: absolute;
+                                font-size: 28rem / @base-font;
+                                color: #333333;
+                                width: 454rem / @base-font;
+                                height: 80rem / @base-font;
+                                top: 28rem / @base-font;
+                                right: 20rem / @base-font;
+                                line-clamp: 2;
+                                overflow: hidden;
+                            }
+
+                            .ware-coupon{
+                                position: absolute;
+                                top: 160rem / @base-font;
+                                left: 276rem / @base-font;
+                                font-size: 24rem /@base-font;
+                                color: #ffffff;
+                                background-color: #da2f25;
+                                border-radius: 4rem / @base-font;
+                                padding: 8rem /  @base-font;
+                            }
+
+                            .ware-price{
+                                font-size: 36rem / @base-font;
+                                color: #da2f25;
+                                padding: 0;
+                                position: absolute;
+                                left: 276rem / @base-font;
+                                bottom: 25rem / @base-font;
+                            }
+
+                            .ware-sale{
+                                font-size: 26rem /  @base-font;
+                                padding: 0;
+                                position: absolute;
+                                right: 20rem / @base-font;
+                                bottom: 88rem / @base-font;
+                                color: #999999;
+                            }
+
+                            .ware-commission{
+                                position: absolute;
+                                bottom: 20rem / @base-font;
+                                right: 20rem / @base-font;
+                                padding-left: 53rem/ @base-font;
+                                padding-right: 16rem / @base-font;
+                                padding-top: 10rem /  @base-font;
+                                padding-bottom: 10rem /  @base-font;
+                                font-size: 24rem / @base-font;
+                                color: #572f00;
+                                background-color: #ffd88a;
+                                border-radius: 24rem / @base-font;
+                            }
+    
+                            &::after{
+                                position: absolute;
+                                content: '';
+                                left: 730rem / @base-font;
+                                bottom: 0;
+                                width: 710rem / @base-font;
+                                height: 1rem / @base-font;
+                                background-color: #ececec;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
