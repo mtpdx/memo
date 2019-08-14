@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            /* 主轴方向 row row-reverse column column-reverse */
+            flex-direction: row;
+            /* 主轴上元素排列方式 flex-start flex-end center space-around space-between */
+            justify-content: flex-start;
+            /* 子元素是否换行 wrap nowrap */
+            flex-wrap: wrap;
+            /* 单行 侧轴上元素排列方式  flex-start flex-end center strecch*/
+            /* align-items: flex-start */
+            /* 多行  侧轴上元素排列方式  flex-start flex-end center space-berween space-around stretch*/
+            align-content: flex-start;
+            /* flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性 */
+            flex-flow: column wrap;
+            
+        }
+
+        * {
+            flex: 2;
+            order: 1;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+</html>
