@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .grid {
+            margin: auto;
+            width: 600px;
+            text-align: center;
+        }
+
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px dashed orange;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .grid th {
+            background-color: orange;
+        }
+
+        .grid .book {
+            padding-bottom: 10px;
+            padding-top: 5px;
+            background-color: #F3DCAB;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h2>{{title}}</h2>
+                <h3 v-text='title'></h3>
+                <h4 v-html='title'></h4>
+                <h5 v-pre>{{title}}</h5>
+                <div class="book">
+                    <div>
+                        <label>
+                            Number：
+                        </label>
+                        <input type="text" v-model.number.trim="id" v-bind:disabled="flag" v-focus>
+                        <label>
+                            Name：
+                        </label>
+                        <input type="text" v-model="name">
+                        <button v-on:click="submit" :disabled="submitFlag">submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                    <span>Total heroes：</span>
+                    <span>{{total}}</span>
+                  </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Operate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :key="hero.id" v-for="hero in heroes">
+                        <td>{{hero.id}}</td>
+                        <td>{{hero.name | format_n}}</td>
+                        <td>{{hero.date | format_d('yyyy-MM-dd hh:mm:ss')}}</td>
+                        <td>
+                            <!-- prevent 去除a标签默认行为 -->
+                            <a href="" v-on:click.prevent="modify_hero(hero.id)">Modify</a>
+                            <span>|</span>
+                            <a href="" @click.prevent="del_hero(hero.id)">Del</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/time.js"></script>
+    <script type="text/javascript" src="js/demo1.js"></script>
+</body>
+
+</html>

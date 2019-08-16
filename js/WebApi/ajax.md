@@ -448,6 +448,25 @@ console.log('服务器启动成功');
    });
    ```
 
+   ```javascript
+   // 当发送跨域请求时，要携带cookie信息, xhr.withCredentials = true
+    
+   checkLogin.onclick = function () {
+   	// 创建ajax对象
+   	var xhr = new XMLHttpRequest();
+   	// 对ajax对象进行配置
+   	xhr.open('get', 'http://localhost:3001/checkLogin');
+   	// 当发送跨域请求时，携带cookie信息
+   	xhr.withCredentials = true;
+   	// 发送请求并传递请求参数
+   	xhr.send();
+   	// 监听服务器端给予的响应内容
+   	xhr.onload = function () {
+   		console.log(xhr.responseText);
+   	}
+   }
+   ```
+
    
 
 3.  服务器中转
@@ -459,4 +478,15 @@ console.log('服务器启动成功');
    ```
 
    
+
+### jquery中的ajax
+
+```
+$.ajax (一般请求 , jsonp请求)
+beforeSend
+serialize
+$.get
+$.post
+ajax全局事件(.ajaxStart(), ajaxComplete())
+```
 
