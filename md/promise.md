@@ -168,9 +168,26 @@ class Promise{
                 })
             }
         })
-        return promise2
-        
+        return promise2       
     }
+    
+    // catch 没resolve返回
+    catch(errorCallback){
+        retuen this.then(null, errorCallback)
+    }
+    
+    // 创建成功的Promise
+    static resolve(value){
+        return new Promise((resolve, reject) => {
+            resolve(value)
+        })
+    }
+    // 创建失败的Promise
+    static reject(reason){
+        return new Promise((resolve, reject) => {
+            reject(reason)
+        })
+    } 
 }
 
 module.exports = Promise
@@ -222,15 +239,20 @@ class Promise{
         // 判断x的类型
         if (typeof x === 'function' || (typeof x === 'object' && x !== null)){
             // 可能是promise
+            let called	// Promise可能是其他来源的,不能保证resolve/reject只调用一次
             try{
                 // 看有无then方法
                 let then = x.then
                 if (typeof then === 'function'){
                     // x是promise, x.then(()=>{},()=>{})
                     then.call(x, y => {
+                        if (called) return	// 防止多次调用
+                        called = true
                         // y可能是promise, 递归判断
                         resolvePromise(promise2, y , resolve, reject)
                     }, r => {
+                        if (called) return	// 防止多次调用
+                        called = true
                         reject(r)
                     })
                 }else{
@@ -238,6 +260,8 @@ class Promise{
                     resolve(x)
                 }
             }catch(e){
+                if (called) return	// 防止多次调用
+                called = true
                 reject(e)
             }
         }else {
@@ -272,8 +296,15 @@ class Promise{
                     })
                 })
                 
-                this.onRejectCallback.push(() => {
-                    onRejected(this.reason)
+                this.onRejectCallback.push(() => {                    
+                    setTimeout(() => {
+                        try{
+                            let x = onRejected(this.reason)
+                            resolvePromise(promise2, x , resolve, reject)
+                       	} catch(e){
+                        	reject(e)
+                       	}
+                    })
                 })
             }
         })
@@ -285,3 +316,61 @@ class Promise{
 module.exports = Promise
 ```
 
+
+
+### 3. Promise.all 实现
+
+> 处理多个异步并发问题
+>
+> 全部完成才算完成,如果一个失败就失败
+>
+> promises数组顺序执行
+>
+> 返回promise对象
+
+```javascript
+const isPromise = val => {
+    if (typeof val === 'function' || (typeof val === 'object' && val !== null)){
+        return typeof val.then === 'function'
+    }
+    return false
+}
+
+Promise.all = function(promises){ 
+    return new Promise((resolve, reject) => {
+        let arr = []
+    	let i = 0
+        for(let j = 0; j < promises.length; j++){
+            let cur = promises[j]
+            // 判断cur是不是promise
+            if (isPromise(cur)){
+                cur.then(data => {
+                    arr[j] = data
+                    if (++i === promises.length){
+                        resolve(arr)
+                    }
+                }, reject)
+            }else{
+                arr[j] = cur
+                if (++i === promises.length){
+                    resolve(arr)
+                }
+            }
+        }
+    })
+}
+```
+
+
+
+### 4. Promise.race 实现
+
+> 有一个成功就成功 有一个失败就失败
+
+
+
+### 5. Promise.finally 实现
+
+
+
+### 6. Promise.try 实现
