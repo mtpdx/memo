@@ -3,8 +3,8 @@
 - 特点:
   - 每次new 一个promise 都需要传递一个执行器,执行器是立即执行的;
   - 执行器函数中有两个参数:resolve, reject;
-  - promise默认有三个状态: pendding, fulfilled(对应resolve), rejected(对应reject);
-  - 只有pendding时可以改变状态,同时只能存在一种状态
+  - promise默认有三个状态: PENDING, fulfilled(对应resolve), rejected(对应reject);
+  - 只有PENDING时可以改变状态,同时只能存在一种状态
   - 每个promise都有一个then方法
 - 作用:
   - 解决并发问题(同步多个异步方法的执行结果)
@@ -16,30 +16,30 @@
 
 ```javascript
 // 简版
-const PENDDING = 'pendding'
+const PENDING = 'PENDING'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
 class Promise{
 	constructor(executor){
-        this.status = PENDDING
+        this.status = PENDING
         this.value = undefined
         this.reason = undefined
         // 可能一个promise 非链式多次调用then,存在多个回调
-        this.onResolveCallback = []
-        this.onRejectCallback = []
+        this.onResolveCallbacks = []
+        this.onRejectCallbacks = []
         let resolve = value => {
-            if (this.status === PENDDING){
+            if (this.status === PENDING){
                 this.value = value
                 this.status = FULFILLED
-                this.onResolveCallback.forEach(fn => fn())
+                this.onResolveCallbacks.forEach(fn => fn())
             }
         }
         let reject = reason => {
-             if (this.status === PENDDING){
+             if (this.status === PENDING){
                  this.reason = reason
                  this.status = REJECTED
-                 this.onRejectCallback.forEach(fn => fn())
+                 this.onRejectCallbacks.forEach(fn => fn())
             }
         }
         try{
@@ -57,11 +57,11 @@ class Promise{
             onRejected(this.reason)
         }
         // 有可能resolve/reject 在 then 之后执行
-        if (this.status === PENDDING){
-            this.onResolveCallback.push(() => {
+        if (this.status === PENDING){
+            this.onResolveCallbacks.push(() => {
                 onFulfilled(this.value)
             })
-            this.onRejectCallback.push(() => {
+            this.onRejectCallbacks.push(() => {
                 onRejected(this.reason)
             })
         }
@@ -76,30 +76,30 @@ module.exports = Promise
 > then的参数是可选参数,如果没传或者不是函数,创建默认函数
 
 ```javascript
-const PENDDING = 'pendding'
+const PENDING = 'PENDING'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
 class Promise{
 	constructor(executor){
-        this.status = PENDDING
+        this.status = PENDING
         this.value = undefined
         this.reason = undefined
         // 可能一个promise 非链式多次调用then,存在多个回调
-        this.onResolveCallback = []
-        this.onRejectCallback = []
+        this.onResolveCallbacks = []
+        this.onRejectCallbacks = []
         let resolve = value => {
-            if (this.status === PENDDING){
+            if (this.status === PENDING){
                 this.value = value
                 this.status = FULFILLED
-                this.onResolveCallback.forEach(fn => fn())
+                this.onResolveCallbacks.forEach(fn => fn())
             }
         }
         let reject = reason => {
-             if (this.status === PENDDING){
+             if (this.status === PENDING){
                  this.reason = reason
                  this.status = REJECTED
-                 this.onRejectCallback.forEach(fn => fn())
+                 this.onRejectCallbacks.forEach(fn => fn())
             }
         }
         try{
@@ -120,10 +120,10 @@ class Promise{
             	onRejected(this.reason)
             }
             // 有可能resolve/reject 在 then 之后执行
-            if (this.status === PENDDING){
-                this.onResolveCallback.push(() => {
+            if (this.status === PENDING){
+                this.onResolveCallbacks.push(() => {
                     // 确保promise2存在, onFulfilled不能在当前上下文中执行
-                    // 异步代码会在同步代码执行后再执行,所以使用setTimeout
+                    // 异步代码会在同步代码执行后再执行,所以使用setTimeout模拟异步调用
                     setTimeout(() => {
                         // 获取上一次的状态, 来决定promise2的结果
                         try{
@@ -163,7 +163,7 @@ class Promise{
                     })
                 })
                 
-                this.onRejectCallback.push(() => {
+                this.onRejectCallbacks.push(() => {
                     onRejected(this.reason)
                 })
             }
@@ -198,30 +198,30 @@ module.exports = Promise
 > 
 
 ```javascript
-const PENDDING = 'pendding'
+const PENDING = 'PENDING'
 const FULFILLED = 'fulfilled'
 const REJECTED = 'rejected'
 
 class Promise{
 	constructor(executor){
-        this.status = PENDDING
+        this.status = PENDING
         this.value = undefined
         this.reason = undefined
         // 可能一个promise 非链式多次调用then,存在多个回调
-        this.onResolveCallback = []
-        this.onRejectCallback = []
+        this.onResolveCallbacks = []
+        this.onRejectCallbacks = []
         let resolve = value => {
-            if (this.status === PENDDING){
+            if (this.status === PENDING){
                 this.value = value
                 this.status = FULFILLED
-                this.onResolveCallback.forEach(fn => fn())
+                this.onResolveCallbacks.forEach(fn => fn())
             }
         }
         let reject = reason => {
-             if (this.status === PENDDING){
+             if (this.status === PENDING){
                  this.reason = reason
                  this.status = REJECTED
-                 this.onRejectCallback.forEach(fn => fn())
+                 this.onRejectCallbacks.forEach(fn => fn())
             }
         }
         try{
@@ -281,8 +281,8 @@ class Promise{
             	onRejected(this.reason)
             }
             // 有可能resolve/reject 在 then 之后执行
-            if (this.status === PENDDING){
-                this.onResolveCallback.push(() => {
+            if (this.status === PENDING){
+                this.onResolveCallbacks.push(() => {
                     // 确保promise2存在, onFulfilled不能在当前上下文中执行
                     // 异步代码会在同步代码执行后再执行,所以使用setTimeout
                     setTimeout(() => {
@@ -296,7 +296,7 @@ class Promise{
                     })
                 })
                 
-                this.onRejectCallback.push(() => {                    
+                this.onRejectCallbacks.push(() => {                    
                     setTimeout(() => {
                         try{
                             let x = onRejected(this.reason)
@@ -321,12 +321,8 @@ module.exports = Promise
 ### 3. Promise.all 实现
 
 > 处理多个异步并发问题
->
-> 全部完成才算完成,如果一个失败就失败
->
-> promises数组顺序执行
->
-> 返回promise对象
+
+`Promise.all(iterable)` 方法返回一个 [`Promise`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise) 实例，此实例在 `iterable` 参数内所有的 `promise` 都“完成（resolved）”或参数中不包含 `promise` 时回调完成（resolve）；如果参数中  `promise` 有一个失败（rejected），此实例回调失败（reject），失败原因的是第一个失败 `promise` 的结果
 
 ```javascript
 const isPromise = val => {
@@ -365,12 +361,89 @@ Promise.all = function(promises){
 
 ### 4. Promise.race 实现
 
-> 有一个成功就成功 有一个失败就失败
+**Promise.race(iterable)** 方法返回一个 `promise`，一旦迭代器中的某个`promise`解决或拒绝，返回的 `promise`就会解决或拒绝。
+
+```javascript
+const isPromise = v => {
+    if(typeof v === 'function' || (typeof v === 'object' && v !== null)){
+        return typeof v.then === 'function'
+    }
+    return false
+}
+Promise.race = promises => new Promise((resolve, reject) => {
+    for(let i = 0; i < promises.length; i++){
+        let cur = promises[i]
+        if(isPromise(cur)){
+            cur.then(resolve, reject)
+        }else{
+            resolve(cur)
+        }
+    }
+})
+```
 
 
 
 ### 5. Promise.finally 实现
 
+> 无论最终结果如何都会执行
+
+```javascript
+class Promise{
+	constructor(){
+		// ...
+	}
+    
+    then(){
+        // ...
+    }
+    
+    finally(fn){
+        return this.then(v => {
+            fn()
+            return v
+        }, r => {
+            fn()
+            return r
+        })
+    }
+    
+}
+```
+
 
 
 ### 6. Promise.try 实现
+
+> Promise.try(function() fn) -> Promise
+>
+> Start the chain of promises with `Promise.try`. Any synchronous exceptions will be turned into rejections on the returned promise.
+
+```javascript
+class Promise{
+	constructor(){
+		// ...
+	}
+    
+    then(){
+        // ...
+    }
+    
+    try(fn){
+        try{
+        	fn()    
+        }catch(e){
+            
+        }
+        return this.then(v => {
+            fn()
+            return v
+        }, r => {
+            fn()
+            return r
+        })
+    }
+    
+}
+```
+
