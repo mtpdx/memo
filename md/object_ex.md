@@ -134,8 +134,9 @@ var Employee = function(name, song) {
 };
 
 // 借用原型对象继承方法
-Employee.prototype = Object.create(Person.prototype);
-Employee.prototype.constructor = Employee; 
+// Employee.prototype = Object.create(Person.prototype);
+// Employee.prototype.constructor = Employee; 
+Employee.prototype = Object.create(Person.prototype, {constructor: {value: Employee}});
 //If you don't set Object.prototype.constructor to Employee, 
 //it will take prototype.constructor of Person (parent). 
 //To avoid that, we set the prototype.constructor to Employee (child).
