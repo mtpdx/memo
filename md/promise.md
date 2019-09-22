@@ -7,10 +7,10 @@
   - 只有PENDING时可以改变状态,同时只能存在一种状态
   - 每个promise都有一个then方法
 - 作用:
-  - 解决并发问题(同步多个异步方法的执行结果)
+  - 解决并发问题(promise.all  同步多个异步方法的执行结果)
   - 链式调用(解决多个回调嵌套问题)
-
-
+- 缺点:
+  - promise不能中断  (fetch发送请求不能中断  axios可以中断)
 
 ### 2. promise实现
 
@@ -275,10 +275,31 @@ class Promise{
         onRejected = typeof onRejected === 'function' ? onRejected: err => {throw err}
         let promise2 = new Promise((resolve, reject) => {
             if (this.status === FULFILLED){
-            	onFulfilled(this.value)
+            	// onFulfilled(this.value)
+                // x 是当前then 成功或者失败函数的返回结果
+  				// x是不是一个普通值如果普通值 把值直接传递到下一个then中
+  				// x是一个promise ？ 我需要采用这个x的状态
+  				// 如果 执行函数出错，直接调用promise2的失败
+                setTimeout(()=>{
+                    try{
+                    	let x = onFulfilled(this.value)
+                     	resolvePromise(promise2, x , resolve, reject)
+                	}catch(e){
+                    	reject(e)
+                	}
+                })
             }
             if (this.status === REJECTED){
-            	onRejected(this.reason)
+            	// onRejected(this.reason)
+                // 修改执行上下文 不止可以用setTimeout()
+                setTimeout(()=>{
+                    try{
+                    	let x = onRejected(this.reason)
+                     	resolvePromise(promise2, x , resolve, reject)
+                	}catch(e){
+                    	reject(e)
+                	}
+                })
             }
             // 有可能resolve/reject 在 then 之后执行
             if (this.status === PENDING){
@@ -411,6 +432,16 @@ class Promise{
 }
 ```
 
+```javascript
+Promise.prototype.finally = function (callback) {
+    let P = this.constructor;
+    return this.then(
+      value  => P.resolve(callback()).then(() => value),
+      reason => P.resolve(callback()).then(() => { throw reason })
+    );
+};
+```
+
 
 
 ### 6. Promise.try 实现
@@ -445,5 +476,26 @@ class Promise{
     }
     
 }
+```
+
+### 7. Promise.defer
+
+
+
+
+
+### 8. 自定义Promise测试
+
+> sudo npm install promises-aplus-tests -g
+
+```javascript
+Promise.defer = Promise.deferred = function() {
+  let dfd = {};
+  dfd.promise = new Promise((resolve, reject) => {
+    dfd.resolve = resolve;
+    dfd.reject = reject;
+  });
+  return dfd;
+};
 ```
 

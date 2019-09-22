@@ -300,6 +300,8 @@ fs.readFile('age.txt', 'utf-8', (err, data) => {
 ### 6. Publish/Subscribe
 
 > 发布订阅模式(第三方参与)
+>
+> eventBus
 
 ```javascript
 // events模块 vue $on $once $off
