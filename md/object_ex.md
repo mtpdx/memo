@@ -186,10 +186,17 @@ bob.sing();		// Bob sing something just like this
 
   > The `Object.create() `method creates a new object, using an existing object as the prototype of the newly created object.
   >
-  > ```
+  > ```javascript
   > Object.create(proto, [propertiesObject])
+  > 
+> propertyObj : {
+  > 	value : 'property value',
+  > 	writable: false,		// default false, 是否可修改
+  > 	configurable: false,	// default false, 是否可删除
+  > 	enumerable: false		// default false, 是否可迭代
+  > }
   > ```
-
+  
   ```javascript
   var o;
   
@@ -217,14 +224,14 @@ bob.sing();		// Bob sing something just like this
         console.log('Setting `o.bar` to', value);
       }
   /* with ES2015 Accessors our code can look like this
-      get() { return 10; },
+    get() { return 10; },
       set(value) {
         console.log('Setting `o.bar` to', value);
       } */
     }
   });
   ```
-
+  
   ```javascript
   var o = Object.create(null)
   Object.setPrototypeOf(o, Object.prototype)
@@ -255,7 +262,14 @@ bob.sing();		// Bob sing something just like this
       value: 42,
       writable: true
     },
-    property2: {}
+    property2: {
+        get(){
+            
+        },
+        set(){
+            
+        }
+    }
   });
   
   console.log(object1.property1);
