@@ -2,7 +2,14 @@ array方法实现
 
 > [array](https://juejin.im/post/5d82c12ff265da03a31d6f92?utm_source=gold_browser_extension#heading-78)
 
+![1569296915668](assets/array.assets/1569296915668.png)
+
+![1569296969869](assets/array.assets/1569296969869.png)
+
+
+
 ```javascript
+
 array = [10, 20, 30, 40, 50]
 
 // forEach
