@@ -22,6 +22,7 @@ let handler = { // 只能代理当前这个对象 1层
     },
     set(target,key,value){ // 反射属性
         // target[key] = value;
+        // 数组更新的时候,还会对length做更新,可以根据length属性做判断
         if(key === 'length') return true;
         console.log('update');
         return  Reflect.set(target,key,value);
@@ -30,6 +31,8 @@ let handler = { // 只能代理当前这个对象 1层
 let proxy = new Proxy(obj,handler)
 proxy.a.a = 100
 console.log(obj.a.a);
+
+//todo proxy数组 pop() push() 测试
 ```
 
 
