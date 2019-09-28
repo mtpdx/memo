@@ -24,6 +24,7 @@ function forEach(array, callback) {
 
 
 // map 
+// 返回新数组
 function map(array, callback) {
     const result = []
     const { length } = array
@@ -48,6 +49,7 @@ function push(array, ...elements) {
 
 
 // filter
+// 返回新数组
 function filter(array, callback) {
     const result = []
     const { length } = array

@@ -1,3 +1,68 @@
+## 数据劫持
+
+### Observer
+
+> vue watch
+
+```javascript
+// 原理 给每个对象增加get/set
+// 缺点: 当对象嵌套层级很深时,需要递归设置get/set, 性能不好
+let obj = {
+    a: '1',
+    b: {
+        c: '2',
+        d: {
+            e: '3'
+        }
+    }
+}
+
+function updateView(){
+    console.log('update view');  
+}
+
+function observer(object) {
+    if (typeof object !== 'object') {
+        return
+    }
+    for (const key in object) {
+        if (object.hasOwnProperty(key)) {
+            defineReactive(object, key, object[key])   
+        }
+    }
+}
+
+function defineReactive(object, key, value) {
+    observer(value)
+    Object.defineProperty(object, key, {
+        enumerable: true,
+        configurable: true,
+        get(){
+            return value
+        },
+        set(newVal){
+            observer(newVal)
+            updateView()
+            value = newVal
+        }
+    })
+}
+
+observer(obj)
+obj.b.d.e = 'e'
+console.log(obj);
+
+// 数组类型
+let arr = [1, 2, 3]
+observer(arr)
+arr[0] = 4	// 数据修改可以监控
+arr.push(5)	// 数据长度变化无法监控
+arr.pop()
+console.log(arr);
+```
+
+
+
 ### 1. Proxy
 
 > 在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写
@@ -7,8 +72,9 @@
 > ```
 
 ```javascript
+// 好处是不需要重写 get / set, 可以监控数组的变化
 // proxy 兼容性差
-// 代理 我们可以创造一个代理 帮我们干某些事
+// 嵌套循环设置代理,get时才会触发
 let obj = {
     a:{a:2}
 }
@@ -29,7 +95,10 @@ let handler = { // 只能代理当前这个对象 1层
     }
 }
 let proxy = new Proxy(obj,handler)
-proxy.a.a = 100
+proxy.a.a = 100 
+// 每次修改内层对象值,都会为内层对象设置新的代理
+// 可以像deepclone一样,将Proxy存到WeakMap来优化
+proxy.a.a = 200
 console.log(obj.a.a);
 
 //todo proxy数组 pop() push() 测试

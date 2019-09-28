@@ -58,6 +58,16 @@ import { stat, exists, readFile } from 'fs';
 
 - 多次重复执行同一句`import`语句，那么只会执行一次，而不会执行多次
 
+- `import`简写
+
+  ​	
+
+  ```javascript
+  import _,* as obj from './a.js';
+  ```
+
+  
+
 - `export *`命令会忽略模块的`default`方法
 
 - `export default`命令用于指定模块的默认输出;一个模块只能有一个默认输出，因此`export default`命令只能使用一次
@@ -110,5 +120,37 @@ import { stat, exists, readFile } from 'fs';
   > import()返回一个 Promise 对象
   >
   > 应用场景:按需加载,条件加载,动态加载
+
+  
+
+  ```javascript
+  // module.js
+  class Dialog{
+      show(){
+          console.log('todo');
+      }
+  }
+  const a = 1;
+  export {
+      a,
+      Dialog as default 
+  }
+  // export default Dialog
+  
+  
+  // test.js
+  let btn = document.createElement('button');
+  btn.addEventListener('click',function(){
+      // import()语法 返回的是一个promise 
+      // 默认导出的结果 import * as res from './module'
+      import('./module').then((res)=>{ // default是关键字,不能直接解构为{default}
+          new res.default().show();
+          console.log(res)
+      }); // 异步组件
+  });
+  document.body.appendChild(btn);
+  ```
+
+  
 
 - 
