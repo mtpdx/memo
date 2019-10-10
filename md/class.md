@@ -70,6 +70,13 @@ console.log(Animal.a(), Animal.b);
 
 
 
+```javascript
+// 模拟类的继承
+
+```
+
+
+
 ### 2.es6
 
 ```javascript

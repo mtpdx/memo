@@ -451,42 +451,28 @@ Promise.prototype.finally = function (callback) {
 > Start the chain of promises with `Promise.try`. Any synchronous exceptions will be turned into rejections on the returned promise.
 
 ```javascript
-class Promise{
-	constructor(){
-		// ...
-	}
-    
-    then(){
-        // ...
+const isPromise = v => {
+    if(typeof v === 'function' || (typeof v === 'object' && v !== null)){
+        return typeof v.then === 'function'
     }
-    
-    try(fn){
-        try{
-        	fn()    
-        }catch(e){
-            
-        }
-        return this.then(v => {
-            fn()
-            return v
-        }, r => {
-            fn()
-            return r
-        })
-    }
-    
+    return false
 }
+Promise.race = fn => new Promise((resolve, reject) => {
+    try{
+        if (isPromise(fn)) {
+            fn.then(resolve, reject)
+        } else {
+            resolve(fn)
+        }
+    }catch(err){
+        reject(err)
+    }
+})
 ```
 
+
+
 ### 7. Promise.defer
-
-
-
-
-
-### 8. 自定义Promise测试
-
-> sudo npm install promises-aplus-tests -g
 
 ```javascript
 Promise.defer = Promise.deferred = function() {
@@ -497,5 +483,25 @@ Promise.defer = Promise.deferred = function() {
   });
   return dfd;
 };
+
+// wrap
+function wrap (fn){
+    let dfd = Promise.defer();
+    fn.then( dfd.resolve,  dfd.reject );
+    dfd.promise.abort = function (err) {
+        dfd.reject(err);
+    };
+    return dfd.promise
+}
+```
+
+
+
+### 8. 自定义Promise测试
+
+> sudo npm install promises-aplus-tests -g
+
+```javascript
+
 ```
 

@@ -294,3 +294,136 @@ export default class extends React.Component {
 }
 ```
 
+
+
+### 表单处理
+
+```javascript
+// 受控组件
+class CInput extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            text: '',
+            content: '',
+            city: '',
+            isChecked: false,
+
+        }
+    }
+    inputChange = e =>{
+        this.setState({
+            text: e.target.value
+        })
+    }
+    textAreaChange = e => {
+        this.setState({
+            content: e.target.value
+        })
+    }
+    cityChange = e => {
+        this.setState({
+            city: e.target.value
+        })
+    }
+    checkChange = e => {
+        this.setState({
+            isChecked: e.target.checked
+        })
+    }
+    render(){
+        return (
+            <div>
+                {/* text */}
+                <input type="text" value={this.state.text} onChange={this.inputChange} />
+                {/* textarea */}
+                <textarea name="" id="" cols="30" rows="10" value={this.state.content} onChange={this.textAreaChange}></textarea>
+                {/* select */}
+                <select name="" id="" value={this.city} onChange={this.cityChange}>
+                    <option value="sh">shanghai</option>
+                    <option value="bj">beijing</option>
+                    <option value="cf">chifeng</option>
+                </select>
+                {/* checkbox */}
+                <input type="checkbox" checked={this.state.isChecked} onChange={this.checkChange}/>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<CInput />, document.getElementById('root'));
+```
+
+
+
+```javascript
+// 多表单元素优化
+// 表单元素添加name属性来区分表单
+class CInput extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            text: '',
+            content: '',
+            city: '',
+            isChecked: false,
+
+        }
+    }
+
+    handleForm = e =>{
+        const target = e.target
+        const value = target.type === 'checkbox' ? target.checked : target.value
+        this.setState({
+            [target.name]: value
+        })
+    }
+
+    render(){
+        return (
+            <div>
+                {/* text */}
+                <input type="text" name="text" value={this.state.text} onChange={this.handleForm} />
+                {/* textarea */}
+                <textarea name="content" id="" cols="30" rows="10" value={this.state.content} onChange={this.handleForm}></textarea>
+                {/* select */}
+                <select name="city" id="" value={this.city} onChange={this.handleForm}>
+                    <option value="sh">shanghai</option>
+                    <option value="bj">beijing</option>
+                    <option value="cf">chifeng</option>
+                </select>
+                {/* check */}
+                <input type="checkbox" name="isChecked" checked={this.state.isChecked} onChange={this.handleForm}/>
+            </div>
+        )
+    }
+}
+```
+
+
+
+```javascript
+// 非受控组件
+// React.createRef()
+class FInput extends React.Component{
+    constructor(){
+        super()
+        this.textRef = React.createRef()
+    }
+
+    getText = () => {
+        console.log('text value: ', this.textRef.current.value);
+        
+    }
+
+    render(){
+        return (
+            <div>
+                <input type="text" ref={this.textRef}/>
+                <button onClick={this.getText}></button>
+            </div>
+        )
+    }
+}
+```
+
