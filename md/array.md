@@ -311,5 +311,8 @@ function entries(array) {
     }
     return createGenerator()
 }
+
+// compose     redux compose
+let compose = (...fns) => fns.reduce((a, b) => (...args)=>a(b(...args)))
 ```
 

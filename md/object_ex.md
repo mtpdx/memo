@@ -189,14 +189,24 @@ bob.sing();		// Bob sing something just like this
   > ```javascript
   > Object.create(proto, [propertiesObject])
   > 
-> propertyObj : {
-  > 	value : 'property value',
-  > 	writable: false,		// default false, 是否可修改
-  > 	configurable: false,	// default false, 是否可删除
-  > 	enumerable: false		// default false, 是否可迭代
+  > // create 原理
+  > function create(parentPrototype) {
+  >     function Fn() {}
+  >     Fn.prototype = parentPrototype;
+  >     return new Fn()
   > }
   > ```
-  
+> propertyObj : {
+> 	value : 'property value',
+> 	writable: false,		// default false, 是否可修改
+> 	configurable: false,	// default false, 是否可删除
+> 	enumerable: false		// default false, 是否可迭代
+> }
+>
+> ```
+> 
+> ```
+
   ```javascript
   var o;
   
@@ -231,7 +241,7 @@ bob.sing();		// Bob sing something just like this
     }
   });
   ```
-  
+
   ```javascript
   var o = Object.create(null)
   Object.setPrototypeOf(o, Object.prototype)

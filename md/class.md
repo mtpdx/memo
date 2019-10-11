@@ -72,6 +72,29 @@ console.log(Animal.a(), Animal.b);
 
 ```javascript
 // 模拟类的继承
+function Animal() {
+    this.name = '动物' // 实例属性 
+}
+Animal.prototype.say = function () {
+    console.log('说话')
+}
+
+// 继承实例属性
+function Tiger() {
+    Animal.call(this); // 调用父类构造函数改变this指向
+}
+
+// Tiger.prototype = Animal.prototype; 	// 混合
+
+// 继承公共属性
+// 1)
+// Tiger.prototype.__proto__ = Animal.prototype  IE不支持直接操作__proto__
+Object.setPrototypeof(Tiger.prototype, Animal.prototype)
+
+// 2) Object.create方法实现继承公共属性
+Tiger.prototype = Object.create(Animal.prototype,{constructor:{value:Tiger}});
+let tiger = new Tiger;
+console.log(tiger.name);
 
 ```
 
@@ -105,5 +128,126 @@ class Animal {
 Animal.flag = 'zzz';
 Animal.a = 'hello';
 console.log(Animal.a)
+```
+
+
+
+```javascript
+class Animal{
+    constructor(name) {
+        this.name = name;
+    }
+    static a(){
+        return 100
+    }
+    say(){
+        console.log('say')
+    }
+}
+// 不能被实例化的类就是抽象类
+// call + Object.create  __proto__
+class Tiger extends Animal{
+    constructor(name) {
+        super(name); // Animal.call(this)
+    }
+    static get a(){ // Object.defineProperty简写
+       // 这里的super ？ 
+    }
+    say(){ 
+        // 子类重写父类方法
+
+        // super是父类的原型
+        super.say(); // Animal.prototype
+    }
+    static a(){ // 静态方法中的super指向的是父类
+        return super.a()
+    }
+}
+let tiger = new Tiger('老虎');
+// console.log(tiger.a)
+```
+
+
+
+```javascript
+// 抽象类 可以被继承 但是不能被new
+class Animal{
+    constructor(name) {
+        this.name = name;
+        // 类的实例化检查
+        if(new.target === Animal){
+            throw new Error('not new')
+        }
+    }
+}
+```
+
+
+
+```javascript
+class Animal {
+    // static a = 1; // 静态属性 es7语法 给类增加一个属性 a = 1
+    a = 1 // 不是给原型上增加a 
+	// 等价于
+	constructor(){
+        this.a = 1
+    }
+
+    // static get a(){ // 给原型添加的
+    //     return 1
+    // }
+}
+let animal = new Animal;
+// 如何查看一个属性是实例上的还是原型上的
+console.log(animal.hasOwnProperty('a'));
+```
+
+
+
+```javascript
+// 装饰器
+// 1) 装饰类
+@log1(1)
+@log2(2)
+class Animal {
+
+}
+let animal = new Animal;
+
+function log1(target) { // 如果写在类的上面 ，第一个参数就是这个类
+    console.log('3')
+   return function () {
+        console.log('1')
+   }
+}
+function log2(target) {
+    console.log(4);
+    return function () {
+        console.log('2')
+    }
+}
+// 3 4 2 1
+
+// 2) 装饰类中属性和方法
+class Animal {
+    @readonly a = 1 
+    @before say() {
+        console.log('say')
+    }
+}
+let animal = new Animal;
+animal.say();
+
+function readonly(proto, key, descriptor) {
+    descriptor.writable = false;
+}
+function before(proto, key, descriptor) {
+    let old = descriptor.value;
+    descriptor.value = function () {
+        console.log('xxx');
+        old();
+    }
+}
+
 ```
 
