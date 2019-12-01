@@ -1,2 +1,3 @@
 # memo
-something about Android
+精通one 学习another 关注next
+
